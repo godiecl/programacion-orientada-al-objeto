@@ -12,6 +12,7 @@ Reúne ejemplos y proyectos en Java que ilustran los conceptos clave de la POO (
 
 | Proyecto                      | Descripción                                                                                                        |
 |-------------------------------|--------------------------------------------------------------------------------------------------------------------|
+| [`diccionario`](diccionario/) | Gestión de un diccionario de palabras y significados cargado desde un archivo de texto y ordenado alfabéticamente. |
 
 ## Requisitos
 

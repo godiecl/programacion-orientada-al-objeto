@@ -1,0 +1,48 @@
+@startuml
+skin rose
+set separator none
+
+
+package cl.ucn.disc.poo.diccionario {
+
+    package domain {
+
+        class Termino <<final>> {
+            - palabra: String
+            - significado: String
+            + Termino(palabra: String, significado: String)
+            + getPalabra(): String
+            + getSignificado(): String
+        }
+
+        interface Diccionario {
+            + insertarPalabra(palabra: String, significado: String): boolean
+            + eliminarPalabra(palabra: String): boolean
+            + buscarSignificado(palabra: String): String
+            + getListadoPalabras(): List<String>
+            + getListadoPalabras(letra: String): List<String>
+            + getCantidadDePalabras(letra: String): int
+            + getCantidadDePalabras(): int
+        }
+
+        class DiccionarioImpl <<final>> {
+            + DiccionarioImpl(archivo: String)
+            + cargarArchivo(nombreArchivo: String)
+        }
+        DiccionarioImpl ..|> Diccionario: <<implements>>
+        DiccionarioImpl "1" o--> "*" Termino: - terminos: List<Termino>
+
+    }
+
+    package utils {
+        class Archive <<final>> {
+            - Archive()
+            + {static} readLines(filename: String): List<String>
+        }
+    }
+
+    DiccionarioImpl ..> Archive: <<uses>>
+
+}
+
+@enduml
