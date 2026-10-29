@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Clase que representa el Pedido de una Mesa.
  */
-public final class Pedido {
+public final class Pedido implements Facturable {
 
     /**
      * Mesa del Pedido.
@@ -49,5 +49,37 @@ public final class Pedido {
     public int getCantidadProductos() {
         // los Productos que estan en la lista.
         return this.productos.size();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void agregar(Producto producto) {
+        // validacion!
+        if (producto == null) {
+            throw new IllegalArgumentException("No se permite Producto vacio");
+        }
+        // agrego el Producto al Pedido.
+        this.productos.add(producto);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public double calcularTotal() {
+        // monto del pedido
+        double total = 0.0;
+
+        // recorrer el listado de productos
+        for (Producto p : this.productos) {
+            // sumo el precio del Producto
+            total += p.getPrecio();
+            // sumo el impuesto del Producto
+            total += p.calcularImpuesto();
+        }
+
+        return total;
     }
 }
