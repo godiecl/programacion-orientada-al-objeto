@@ -64,6 +64,26 @@ public final class SistemaImpl implements Sistema {
      */
     @Override
     public void agregarProductoAMesa(Producto producto, int mesa) {
+        // validaciones
+        if (producto == null) {
+            throw new IllegalArgumentException("Producto vacio");
+        }
+        if (mesa < 1) {
+            throw new IllegalArgumentException("Mesa no valida");
+        }
 
+        // buscar la mesa
+        for (int i = 0; i < this.pedidos.size(); i++) {
+            // encontre la mesa
+            Pedido p = this.pedidos.get(i);
+            if (p.getMesa() == mesa) {
+                // agrego el Producto
+                p.agregar(producto);
+                return;
+            }
+        }
+
+        // No encontre la mesa.
+        throw new IllegalArgumentException("Mesa no encontrada!");
     }
 }
