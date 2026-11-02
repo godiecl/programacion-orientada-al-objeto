@@ -1,0 +1,29 @@
+@startuml
+skin rose
+hide empty fields
+set separator none
+
+package cl.ucn.disc.poo.vehiculos.domain {
+
+    interface Vehiculo {
+        + acelerar(): void
+        + frenar(): void
+    }
+
+    interface Motorizado {
+        + cargarCombustible(): void
+        + getCombustible(): int
+    }
+
+    class Auto implements Vehiculo, Motorizado {
+        - combustible: int
+        + Auto()
+    }
+
+    class Bicicleta implements Vehiculo {
+        + Bicicleta()
+    }
+
+}
+
+@enduml
